@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Practica2.DTOs;
 using Practica2.Interfaces;
@@ -259,6 +260,27 @@ namespace Practica2.Services
 
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message} ";
+            }
+            return result;
+        }
+
+        public async Task<Respuesta> PostVentas([FromBody] Venta venta)
+        {
+            var result = new Respuesta();
+            try
+            {
+                var id=await _context.Ventas.OrderByDescending((x)=>x.IdFactura).Select((x)=>x.IdFactura).FirstOrDefaultAsync()+1;
+                venta.IdFactura = id;
+                venta.FechaHora=DateTime.Now;
+                _context.Ventas.Add(venta);
+                await _context.SaveChangesAsync();
+                result.cod = "000";
+                result.mensaje = "OK";
+            }
+            catch (Exception ex)
+            {
+                result.cod = "999";
+                result.mensaje = $"Exception:{ex.Message} ";
             }
             return result;
         }

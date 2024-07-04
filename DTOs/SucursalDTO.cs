@@ -1,4 +1,4 @@
-﻿namespace Practica2.Interfaces
+﻿namespace Practica2.DTOs
 {
     public class SucursalDTO
     {
