@@ -1,8 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Practica2.DTOs;
 using Practica2.Interfaces;
 using Practica2.Models;
+using System.Linq.Expressions;
 
 namespace Practica2.Services
 {
@@ -47,12 +50,18 @@ namespace Practica2.Services
         public async Task<Respuesta> GetCliente(string? opcion, string? data)
         {
             bool select = false;
-            var query = (from c in _context.Clientes
+            Expression<Func<ClienteDTO, bool>> nulls;
+
+            IQueryable<ClienteDTO> query = (from c in _context.Clientes
                          join e in _context.Estados on c.EstadoId equals e.EstadoId
-                         select new
+                         select new ClienteDTO
                          {
-                             Cliente = c,
-                             Estado = e
+                             ClienteId = c.ClienteId,
+                             ClienteNombre = c.ClienteNombre,
+                             Cedula = c.Cedula,
+                             EstadoId = c.EstadoId,
+                             EstadoDescrip = e.EstadoDescripcion,
+                             FechaHoraReg = c.FechaHoraReg
                          });
             var result = new Respuesta();
             try
@@ -61,59 +70,16 @@ namespace Practica2.Services
                 result.mensaje = "OK";
                 if (!(opcion.IsNullOrEmpty() && data.IsNullOrEmpty()))
                 {
-                    switch (opcion.ToLower())
+                    nulls = QuerysServices.DictionaryCliente(opcion, data);
+                    if (nulls != null)
                     {
-                        case "id":
-                            if (int.TryParse(data, out int id))
-                            {
-                                query = query.Where((x) => x.Cliente.ClienteId == id && x.Cliente.EstadoId == 1);
-                                select = true;
-                            }
-                            else
-                            {
-                                result.cod = "999";
-                                result.mensaje = $"Error en data: '{data}' en es compatible para ID";
-                            }
-                            break;
-                        case "nombre":
-                            if (string.IsNullOrEmpty(data))
-                            {
-                                result.cod = "999";
-                                result.mensaje = "La data se encuentra vacia";
-                            }
-                            else
-                            {
-                                query = query.Where((x) => x.Cliente.ClienteNombre.ToLower().Contains(data.ToLower()) && x.Cliente.EstadoId == 1);
-                                select = true;
-                            }
-                            break;
-                        case "cedula":
-                            if (int.TryParse(data, out int cedula))
-                            {
-                                query = query.Where((x) => x.Cliente.Cedula == cedula && x.Cliente.EstadoId == 1);
-                                select = true;
-                            }
-                            else
-                            {
-                                result.mensaje = $"Error en data: '{data}' en es compatible para Cedula";
-                            }
-                            break;
+                        result.data = await query.Where(nulls).ToListAsync();
                     }
                 }
                 else
                 {
                     select = true;
-                    query = query.Where((x) => x.Cliente.EstadoId == 1);
-                }
-                if (select) {
-                    result.data = await query.Select((x) => new ClienteDTO
-                    {
-                        ClienteId = x.Cliente.ClienteId,
-                        ClienteNombre = x.Cliente.ClienteNombre,
-                        Cedula = x.Cliente.Cedula,
-                        EstadoDescrip = x.Estado.EstadoDescripcion,
-                        FechaHoraReg = x.Cliente.FechaHoraReg
-                    }).ToListAsync();
+                    result.data= await query.Where((x) => x.EstadoId == 1).ToListAsync();
                 }
                 if (DynamicEmpty.IsDynamicEmpty(result.data))
                 {

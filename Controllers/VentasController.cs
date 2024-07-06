@@ -33,6 +33,22 @@ namespace Practica2.Controllers
             }
             return result;
         }
+        [HttpGet]
+        [Route("GetReporte")]
+        public async Task<Respuesta> GetReporte(double precio)
+        {
+            var result = new Respuesta();
+            try
+            {
+                result = await _ventas.GetReporte(precio);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return result;
+        }
         [HttpPost]
         [Route("PostVentas")]
         public async Task<Respuesta> PostVentas([FromBody]Venta venta)
@@ -41,6 +57,38 @@ namespace Practica2.Controllers
             try
             {
                 result = await _ventas.PostVentas(venta);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return result;
+        }
+        [HttpPut]
+        [Route("PutVentas")]
+        public async Task<Respuesta> PutVentas([FromBody] Venta venta)
+        {
+            var result = new Respuesta();
+            try
+            {
+                result = await _ventas.PutVentas(venta);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return result;
+        }
+        [HttpPut]
+        [Route("DeleteVentas")]
+        public async Task<Respuesta> DeleteVentas(int idFactura)
+        {
+            var result = new Respuesta();
+            try
+            {
+                result = await _ventas.DeleteVentas(idFactura);
             }
             catch (Exception)
             {

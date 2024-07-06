@@ -49,6 +49,7 @@ namespace Practica2.Services
         public async Task<Respuesta> GetProductos(string? opcion, string? data, string? data2)
             {
             var result = new Respuesta();
+            Expression<Func<ProductoDTO, bool>> nulls;
             IQueryable<ProductoDTO> query = (from p in _context.Productos
                          join mar in _context.Marcas on p.MarcaId equals mar.MarcaId
                          join mod in _context.Modelos on p.ModeloId equals mod.ModeloId
@@ -71,28 +72,25 @@ namespace Practica2.Services
                          });
             try
             {
-                int.TryParse(data, out int in1);
-                double.TryParse(data, out double double1);
-                double.TryParse(data2, out double double2);
-                var validar = data.IsNullOrEmpty();
-                var dictionary=new Dictionary<string, Expression<Func<ProductoDTO, bool>>>();
-                dictionary.Add("descripcion", (x) => x.ProductoDescrip.ToLower().Equals(data.ToLower()) && x.EstadoId==1);
-                dictionary.Add("id", (x) => x.ProductoId == in1 && x.EstadoId == 1);
-                dictionary.Add("marca", (x) => x.MarcaId == in1 && x.EstadoId == 1);
-                dictionary.Add("modelo", (x) => x.ModeloId == in1 && x.EstadoId == 1);
-                dictionary.Add("precio", (x) => x.Precio == double1 && x.EstadoId == 1);
-                var dictionaryDoble=new Dictionary<string, Expression<Func<ProductoDTO, bool>>>();
-                dictionaryDoble.Add("precio", (x) => (double1 <= x.Precio && x.Precio <= double2) && x.EstadoId == 1);
+
                 result.cod = "000";
                 result.mensaje = "Ok";
                 if (!(opcion.IsNullOrEmpty() && data.IsNullOrEmpty())) {
                     if (data2.IsNullOrEmpty())
                     {
-                        result.data =dictionary.ContainsKey(opcion.ToLower()) && !validar? await query.Where(dictionary[opcion.ToLower()]).ToListAsync():null;
+                        nulls = QuerysServices.DictionaryProducto(opcion, data);
+                        if (nulls != null)
+                        {
+                            result.data = await query.Where(nulls).ToListAsync();
+                        }
                     }
                     else
-                    {   
-                        result.data = dictionaryDoble.ContainsKey(opcion.ToLower())?await query.Where(dictionaryDoble[opcion.ToLower()]).ToListAsync():null;
+                    {
+                        nulls = QuerysServices.DictionaryProductoDoble(opcion, data, data2);
+                        if (nulls != null)
+                        {
+                            result.data = await query.Where(nulls).ToListAsync();
+                        }
                     }
 
                 }

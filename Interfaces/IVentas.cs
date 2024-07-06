@@ -6,6 +6,9 @@ namespace Practica2.Interfaces
     public interface IVentas
     {
         Task<Respuesta> GetVentas(string? opcion, string? data, string? data2);
-        Task<Respuesta> PostVentas([FromBody] Venta venta)
+         Task<Respuesta> GetReporte(double precio);
+        Task<Respuesta> PostVentas(Venta venta);
+        Task<Respuesta> PutVentas(Venta venta);
+        Task<Respuesta> DeleteVentas(int idFactura);
     }
 }

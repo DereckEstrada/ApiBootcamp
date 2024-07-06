@@ -130,3 +130,4 @@ C:\Users\derec\OneDrive\Documents\Bootcamp\.NetCore\Practica2\Practica2\obj\Debu
 C:\Users\derec\OneDrive\Documents\Bootcamp\.NetCore\Practica2\Practica2\obj\Debug\net8.0\Practica2.pdb
 C:\Users\derec\OneDrive\Documents\Bootcamp\.NetCore\Practica2\Practica2\obj\Debug\net8.0\Practica2.genruntimeconfig.cache
 C:\Users\derec\OneDrive\Documents\Bootcamp\.NetCore\Practica2\Practica2\obj\Debug\net8.0\ref\Practica2.dll
+C:\Users\derec\OneDrive\Documents\Bootcamp\.NetCore\Practica2\Practica2\obj\Debug\net8.0\Practica2.sourcelink.json
