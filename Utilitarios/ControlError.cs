@@ -17,7 +17,7 @@
                 }
                 StreamWriter writer = new StreamWriter($"{ruta}\\{archivo}");
                 writer.WriteLine($"Se presento una novedad en el metodo: '{metodo}', con el siguiente error: '{error}'");
-                writer.Close();
+                writer.Close(); 
             }
             catch (Exception)
             {
