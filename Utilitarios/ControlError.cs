@@ -15,9 +15,10 @@
                 {
                     Directory.CreateDirectory(ruta);
                 }
-                StreamWriter writer = new StreamWriter($"{ruta}\\{archivo}");
-                writer.WriteLine($"Se presento una novedad en el metodo: '{metodo}', con el siguiente error: '{error}'");
-                writer.Close(); 
+                StreamWriter writ = new StreamWriter($"{ruta}\\{archivo}",true);
+
+                writ.WriteLine($"Se presento una novedad en el metodo: '{metodo}', con el siguiente error: '{error}'");
+                writ.Close(); 
             }
             catch (Exception)
             {
