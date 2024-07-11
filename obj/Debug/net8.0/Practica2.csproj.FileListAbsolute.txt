@@ -116,6 +116,7 @@ C:\Users\derec\OneDrive\Documents\Bootcamp\.NetCore\Practica2\Practica2\obj\Debu
 C:\Users\derec\OneDrive\Documents\Bootcamp\.NetCore\Practica2\Practica2\obj\Debug\net8.0\Practica2.AssemblyInfo.cs
 C:\Users\derec\OneDrive\Documents\Bootcamp\.NetCore\Practica2\Practica2\obj\Debug\net8.0\Practica2.csproj.CoreCompileInputs.cache
 C:\Users\derec\OneDrive\Documents\Bootcamp\.NetCore\Practica2\Practica2\obj\Debug\net8.0\Practica2.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\derec\OneDrive\Documents\Bootcamp\.NetCore\Practica2\Practica2\obj\Debug\net8.0\Practica2.sourcelink.json
 C:\Users\derec\OneDrive\Documents\Bootcamp\.NetCore\Practica2\Practica2\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\derec\OneDrive\Documents\Bootcamp\.NetCore\Practica2\Practica2\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\derec\OneDrive\Documents\Bootcamp\.NetCore\Practica2\Practica2\obj\Debug\net8.0\staticwebassets\msbuild.Practica2.Microsoft.AspNetCore.StaticWebAssets.props
@@ -130,4 +131,3 @@ C:\Users\derec\OneDrive\Documents\Bootcamp\.NetCore\Practica2\Practica2\obj\Debu
 C:\Users\derec\OneDrive\Documents\Bootcamp\.NetCore\Practica2\Practica2\obj\Debug\net8.0\Practica2.pdb
 C:\Users\derec\OneDrive\Documents\Bootcamp\.NetCore\Practica2\Practica2\obj\Debug\net8.0\Practica2.genruntimeconfig.cache
 C:\Users\derec\OneDrive\Documents\Bootcamp\.NetCore\Practica2\Practica2\obj\Debug\net8.0\ref\Practica2.dll
-C:\Users\derec\OneDrive\Documents\Bootcamp\.NetCore\Practica2\Practica2\obj\Debug\net8.0\Practica2.sourcelink.json

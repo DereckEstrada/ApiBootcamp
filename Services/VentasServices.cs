@@ -38,6 +38,8 @@ namespace Practica2.Services
 
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message} ";
+                log.LogErrorMetodos(this.GetType().Name, "DeleteVentas", ex.Message);
+
             }
             return result;
         }
@@ -55,7 +57,7 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Se presente una novedad, comunicarse con el departamento de sistemas";
-                log.LogErrorMetodos("GetReporte", ex.Message);
+                log.LogErrorMetodos(this.GetType().Name, "GetReporte", ex.Message);
             }
             return result;
         }
@@ -141,7 +143,7 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Se presente una novedad, comunicarse con el departamento de sistemas";
-                log.LogErrorMetodos("GetReporte", ex.Message);
+                log.LogErrorMetodos(this.GetType().Name, "GetVentas", ex.Message);
             }
             return result;
         }
@@ -167,6 +169,8 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception:{ex.Message} ";
+                log.LogErrorMetodos(this.GetType().Name, "PostVentas", ex.Message);
+
             }
             return result;
         }
@@ -191,6 +195,8 @@ namespace Practica2.Services
 
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message} ";
+                log.LogErrorMetodos(this.GetType().Name, "PutVentas", ex.Message);
+
             }
             return result;
         }

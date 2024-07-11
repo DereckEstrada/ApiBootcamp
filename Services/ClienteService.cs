@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Practica2.DTOs;
 using Practica2.Interfaces;
 using Practica2.Models;
+using Practica2.Utilitarios;
 using System.Linq.Expressions;
 
 namespace Practica2.Services
@@ -12,6 +13,7 @@ namespace Practica2.Services
     public class ClienteService : ICliente, IRepository<Cliente>
     {
         private VentaspruebaContext _context;
+        private ControlError log=new ControlError();
         public ClienteService(VentaspruebaContext context)
         {
             this._context = context;
@@ -43,13 +45,14 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "DeleteCliente", ex.Message);
+
             }
             return result;
         }
 
         public async Task<Respuesta> GetCliente(string? opcion, string? data)
         {
-            bool select = false;
             Expression<Func<ClienteDTO, bool>> nulls;
 
             IQueryable<ClienteDTO> query = (from c in _context.Clientes
@@ -78,7 +81,6 @@ namespace Practica2.Services
                 }
                 else
                 {
-                    select = true;
                     result.data= await query.Where((x) => x.EstadoId == 1).ToListAsync();
                 }
                 if (DynamicEmpty.IsDynamicEmpty(result.data))
@@ -92,6 +94,8 @@ namespace Practica2.Services
 
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "GetCliente", ex.Message);
+
             }
             return result;
         }
@@ -123,6 +127,8 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "PostCliente", ex.Message);
+
             }
             return result;
         }
@@ -163,6 +169,8 @@ namespace Practica2.Services
 
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "PutCliente", ex.Message);
+
             }
             return result;
         }

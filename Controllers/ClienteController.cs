@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Practica2.Interfaces;
 using Practica2.Models;
+using Practica2.Utilitarios;
 
 namespace Practica2.Controllers
 {
@@ -10,6 +11,7 @@ namespace Practica2.Controllers
     public class ClienteController : ControllerBase
     {
         private readonly ICliente _cliente;
+        private ControlError log=new ControlError();
         public ClienteController(ICliente cliente)
         {
             this._cliente = cliente;
@@ -25,10 +27,10 @@ namespace Practica2.Controllers
             {
                 result=await _cliente.GetCliente(opcion, data);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "GetCliente", ex.Message);
             }
             return result;
         }
@@ -42,10 +44,11 @@ namespace Practica2.Controllers
             {
                 result = await _cliente.PostCliente(cliente);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "PostCliente", ex.Message);
+
             }
             return result;
         }
@@ -59,10 +62,10 @@ namespace Practica2.Controllers
             {
                 result = await _cliente.PutCliente(cliente);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "PutCliente", ex.Message);
             }
             return result;
         }
@@ -76,10 +79,10 @@ namespace Practica2.Controllers
             {
                 result = await _cliente.DeleteCliente(id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "DeleteCliente", ex.Message);
             }
             return result;
         }

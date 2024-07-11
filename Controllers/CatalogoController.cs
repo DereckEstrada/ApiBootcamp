@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 using Practica2.Interfaces;
 using Practica2.Models;
+using Practica2.Utilitarios;
 
 namespace Practica2.Controllers
 {
@@ -11,6 +12,7 @@ namespace Practica2.Controllers
     public class CatalogoController : ControllerBase
     {
         private readonly ICatalogo _catalogo;
+        private ControlError log=new ControlError();
         public CatalogoController(ICatalogo catalogo)
         {
             this._catalogo = catalogo;
@@ -24,10 +26,11 @@ namespace Practica2.Controllers
             {
                 result = await _catalogo.GetMarca();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "GetMarca", ex.Message);
+
             }
             return result;
         }
@@ -40,10 +43,10 @@ namespace Practica2.Controllers
             {
                 result = await _catalogo.PostMarca(marca);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                
+                log.LogErrorMetodos(this.GetType().Name, "PosttMarca", ex.Message);
             }
             return result;
         }
@@ -56,10 +59,11 @@ namespace Practica2.Controllers
             {
                 result = await _catalogo.PutMarca(marca);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "PutMarca", ex.Message);
+                
             }
             return result;
         }
@@ -72,10 +76,10 @@ namespace Practica2.Controllers
             {
                 result = await _catalogo.DeleteMarca(id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "DeleteMarca", ex.Message);
             }
             return result;
         }
@@ -88,10 +92,10 @@ namespace Practica2.Controllers
             {
                 result = await _catalogo.GetModelo();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "GetModelo", ex.Message);
             }
             return result;
         }
@@ -104,10 +108,10 @@ namespace Practica2.Controllers
             {
                 result = await _catalogo.PostModelo(modelo);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "PostModelo", ex.Message);
             }
             return result;
         }
@@ -120,10 +124,10 @@ namespace Practica2.Controllers
             {
                 result = await _catalogo.PutModelo(modelo);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "PutModelo", ex.Message);
             }
             return result;
         }
@@ -136,10 +140,10 @@ namespace Practica2.Controllers
             {
                 result = await _catalogo.DeleteModelo(id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.LogErrorMetodos(this.GetType().Name, "DeleteModelo", ex.Message);
 
-                throw;
             }
             return result;
         }
@@ -152,10 +156,10 @@ namespace Practica2.Controllers
             {
                 result = await _catalogo.GetCategoria();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "GetCategoria", ex.Message);
             }
             return result;
         }
@@ -168,10 +172,10 @@ namespace Practica2.Controllers
             {
                 result = await _catalogo.PostCategoria(categoria);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "PostCategoria", ex.Message);
             }
             return result;
         }
@@ -184,10 +188,11 @@ namespace Practica2.Controllers
             {
                 result = await _catalogo.PutCategoria(categoria);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "PutCategoria", ex.Message);
+
             }
             return result;
         }
@@ -200,10 +205,11 @@ namespace Practica2.Controllers
             {
                 result = await _catalogo.DeleteCategoria(id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "DeleteCategoria", ex.Message);
+
             }
             return result;
         }
@@ -216,10 +222,11 @@ namespace Practica2.Controllers
             {
                 result = await _catalogo.GetSucursal();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "GetSucursal", ex.Message);
+
             }
             return result;
         }
@@ -232,10 +239,11 @@ namespace Practica2.Controllers
             {
                 result = await _catalogo.PostSucursal(sucursal);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "PostSucursal", ex.Message);
+
             }
             return result;
         }
@@ -248,10 +256,11 @@ namespace Practica2.Controllers
             {
                 result = await _catalogo.PutSucursal(sucursal);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "PutSucursal", ex.Message);
+
             }
             return result;
         }
@@ -264,10 +273,11 @@ namespace Practica2.Controllers
             {
                 result = await _catalogo.DeleteSucursal(id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "DeleteSucursal", ex.Message);
+
             }
             return result;
         }

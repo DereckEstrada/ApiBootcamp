@@ -4,12 +4,14 @@ using Microsoft.IdentityModel.Tokens;
 using Practica2.DTOs;
 using Practica2.Interfaces;
 using Practica2.Models;
+using Practica2.Utilitarios;
 using System.Linq.Expressions;
 namespace Practica2.Services
 {
     public class ProductoServices : IProducto, IRepository<Producto>
     {
         private VentaspruebaContext _context;
+        private ControlError log=new ControlError();    
         public ProductoServices(VentaspruebaContext context)
         {
             this._context = context;
@@ -42,6 +44,8 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "DeleteProducto", ex.Message);
+
             }
             return result;
         }
@@ -107,6 +111,8 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "GetProductos", ex.Message);
+
             }
             return result;
         }
@@ -129,6 +135,8 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "PostProducto", ex.Message);
+
             }
             return result;
         }
@@ -157,6 +165,8 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "PuttProducto", ex.Message);
+
             }
             return result;
         }

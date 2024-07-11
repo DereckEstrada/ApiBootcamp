@@ -2,6 +2,7 @@
 using Practica2.DTOs;
 using Practica2.Interfaces;
 using Practica2.Models;
+using Practica2.Utilitarios;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
@@ -10,6 +11,7 @@ namespace Practica2.Services
     public class CatalogoService : ICatalogo, IRepository<Marca>, IRepository<Modelo>, IRepository<Categorium>, IRepository<Sucursal>
     {
         private VentaspruebaContext _context;
+        private ControlError log=new ControlError();
         public CatalogoService(VentaspruebaContext context)
         {
             this._context = context;
@@ -41,6 +43,8 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "DeleteMarca", ex.Message);
+
             }
             return result;
         }
@@ -67,6 +71,8 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "GetMarca", ex.Message);
+
             }
             return result;
         }
@@ -88,6 +94,8 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "PostMarca", ex.Message);
+
             }
             return result;
         }
@@ -116,6 +124,8 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "PutMarca", ex.Message);
+
             }
             return result; 
         }
@@ -146,6 +156,8 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "DeleteModelo", ex.Message);
+
             }
             return result;
         }
@@ -172,6 +184,8 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "GetModelo", ex.Message);
+
             }
             return result;
         }
@@ -193,6 +207,8 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "PostModelo", ex.Message);
+
             }
             return result;
         }
@@ -215,12 +231,15 @@ namespace Practica2.Services
                 {
                     result.cod = "111";
                     result.mensaje = $"Ningun modelo se encontro con la id: '{modelo.ModeloId}'";
+
                 }
             }
             catch (Exception ex)
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "PutModelo", ex.Message);
+
             }
             return result;
         }
@@ -251,6 +270,8 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "DeleteCategoria", ex.Message);
+
             }
             return result;
         }
@@ -277,6 +298,8 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "GetCategoria", ex.Message);
+
             }
             return result;
         }
@@ -298,6 +321,8 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "PostCategoria", ex.Message);
+
             }
             return result;
         }
@@ -326,6 +351,8 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "PutCategoria", ex.Message);
+
             }
             return result;
         }
@@ -356,6 +383,8 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "DeleteSucursal", ex.Message);
+
             }
             return result;
         }
@@ -384,6 +413,8 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "GetSucursal", ex.Message);
+
             }
             return result;
         }
@@ -405,6 +436,8 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "PostSucursal", ex.Message);
+
             }
             return result;
         }
@@ -413,6 +446,7 @@ namespace Practica2.Services
         {
             var result = new Respuesta();
             bool validar = false;
+
             try
             {
                 validar = await _context.Sucursals.Where((x) => x.SucursalId== sucursal.SucursalId).AnyAsync();
@@ -433,6 +467,8 @@ namespace Practica2.Services
             {
                 result.cod = "999";
                 result.mensaje = $"Exception: {ex.Message}";
+                log.LogErrorMetodos(this.GetType().Name, "PutSucursal", ex.Message);
+
             }
             return result;
         }

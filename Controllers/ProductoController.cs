@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Practica2.Interfaces;
 using Practica2.Models;
+using Practica2.Utilitarios;
 
 namespace Practica2.Controllers
 {
@@ -11,6 +12,7 @@ namespace Practica2.Controllers
     public class ProductoController : ControllerBase
     {
         private readonly IProducto _producto;
+        private ControlError log=new ControlError();
         public ProductoController(IProducto producto)
         {
             this._producto = producto;
@@ -24,10 +26,10 @@ namespace Practica2.Controllers
             {
                 result= await _producto.GetProductos(opcion, data, data2);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.LogErrorMetodos(this.GetType().Name, "GetProductos", ex.Message);
 
-                throw;
             }
             return result;
         }
@@ -40,10 +42,10 @@ namespace Practica2.Controllers
             {
                 result= await _producto.PostProducto(producto);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "PostProducto", ex.Message);
             }
             return result ;
         }
@@ -56,10 +58,10 @@ namespace Practica2.Controllers
             {
                 result=await _producto.PutProducto(producto);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "PutProducto", ex.Message);
             }
             return result;
         }
@@ -72,10 +74,10 @@ namespace Practica2.Controllers
             {
                 result=await _producto.DeleteProducto(id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "DeleteProducto", ex.Message);
             }
             return result;
         }

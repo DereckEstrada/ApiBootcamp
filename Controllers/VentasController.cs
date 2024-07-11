@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Practica2.Interfaces;
 using Practica2.Models;
+using Practica2.Utilitarios;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Practica2.Controllers
@@ -12,6 +13,7 @@ namespace Practica2.Controllers
     public class VentasController : ControllerBase
     {
         private readonly IVentas _ventas;
+        private ControlError log=new ControlError();
         public VentasController(IVentas ventas)
         {
             this._ventas = ventas;
@@ -26,10 +28,10 @@ namespace Practica2.Controllers
             {
                 result = await _ventas.GetVentas(opcion, data, data2);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "GetVentas", ex.Message);
             }
             return result;
         }
@@ -42,10 +44,10 @@ namespace Practica2.Controllers
             {
                 result = await _ventas.GetReporte(precio);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "GetReporte", ex.Message);
             }
             return result;
         }
@@ -58,10 +60,10 @@ namespace Practica2.Controllers
             {
                 result = await _ventas.PostVentas(venta);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "PostVentas", ex.Message);
             }
             return result;
         }
@@ -74,10 +76,10 @@ namespace Practica2.Controllers
             {
                 result = await _ventas.PutVentas(venta);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "PuttVentas", ex.Message);
             }
             return result;
         }
@@ -90,10 +92,9 @@ namespace Practica2.Controllers
             {
                 result = await _ventas.DeleteVentas(idFactura);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                log.LogErrorMetodos(this.GetType().Name, "DeleteVentas", ex.Message);
             }
             return result;
         }
