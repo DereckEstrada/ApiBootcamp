@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\derec\\OneDrive\\Documents\\Bootcamp\\.NetCore\\Practica2 - copia\\ApiBootcamp\\Practica2.csproj": {}
+    "C:\\Users\\derec\\OneDrive\\Documents\\Bootcamp\\.NetCore\\ApiBootcamp\\ApiVentas\\Practica2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\derec\\OneDrive\\Documents\\Bootcamp\\.NetCore\\Practica2 - copia\\ApiBootcamp\\Practica2.csproj": {
+    "C:\\Users\\derec\\OneDrive\\Documents\\Bootcamp\\.NetCore\\ApiBootcamp\\ApiVentas\\Practica2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\derec\\OneDrive\\Documents\\Bootcamp\\.NetCore\\Practica2 - copia\\ApiBootcamp\\Practica2.csproj",
+        "projectUniqueName": "C:\\Users\\derec\\OneDrive\\Documents\\Bootcamp\\.NetCore\\ApiBootcamp\\ApiVentas\\Practica2.csproj",
         "projectName": "Practica2",
-        "projectPath": "C:\\Users\\derec\\OneDrive\\Documents\\Bootcamp\\.NetCore\\Practica2 - copia\\ApiBootcamp\\Practica2.csproj",
+        "projectPath": "C:\\Users\\derec\\OneDrive\\Documents\\Bootcamp\\.NetCore\\ApiBootcamp\\ApiVentas\\Practica2.csproj",
         "packagesPath": "C:\\Users\\derec\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\derec\\OneDrive\\Documents\\Bootcamp\\.NetCore\\Practica2 - copia\\ApiBootcamp\\obj\\",
+        "outputPath": "C:\\Users\\derec\\OneDrive\\Documents\\Bootcamp\\.NetCore\\ApiBootcamp\\ApiVentas\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\derec\\AppData\\Roaming\\NuGet\\NuGet.Config",
