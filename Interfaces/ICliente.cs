@@ -2,11 +2,8 @@
 
 namespace Practica2.Interfaces
 {
-    public interface ICliente
+    public interface ICliente : IGeneric<Cliente>
     {
         Task<Respuesta> GetCliente(string? opcion, string? data);
-        Task<Respuesta> PostCliente(Cliente cliente);
-        Task<Respuesta> PutCliente(Cliente cliente);
-        Task<Respuesta> DeleteCliente(int id);
     }
 }

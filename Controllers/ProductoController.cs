@@ -12,7 +12,7 @@ namespace Practica2.Controllers
     public class ProductoController : ControllerBase
     {
         private readonly IProducto _producto;
-        private ControlError log=new ControlError();
+        private ControlError log = new ControlError();
         public ProductoController(IProducto producto)
         {
             this._producto = producto;
@@ -21,15 +21,14 @@ namespace Practica2.Controllers
         [Route("GetProductos")]
         public async Task<Respuesta> GetProductos(string? opcion, string? data, string? data2)
         {
-            var result=new Respuesta();
+            var result = new Respuesta();
             try
             {
-                result= await _producto.GetProductos(opcion, data, data2);
+                result = await _producto.GetProductos(opcion, data, data2);
             }
             catch (Exception ex)
             {
                 log.LogErrorMetodos(this.GetType().Name, "GetProductos", ex.Message);
-
             }
             return result;
         }
@@ -37,17 +36,16 @@ namespace Practica2.Controllers
         [Route("PostProducto")]
         public async Task<Respuesta> PostProducto([FromBody] Producto producto)
         {
-            var result=new Respuesta();
+            var result = new Respuesta();
             try
             {
-                result= await _producto.PostProducto(producto);
+                result = await _producto.Post(producto);
             }
             catch (Exception ex)
             {
-
                 log.LogErrorMetodos(this.GetType().Name, "PostProducto", ex.Message);
             }
-            return result ;
+            return result;
         }
         [HttpPut]
         [Route("PutProducto")]
@@ -56,11 +54,10 @@ namespace Practica2.Controllers
             var result = new Respuesta();
             try
             {
-                result=await _producto.PutProducto(producto);
+                result = await _producto.Put(producto);
             }
             catch (Exception ex)
             {
-
                 log.LogErrorMetodos(this.GetType().Name, "PutProducto", ex.Message);
             }
             return result;
@@ -72,11 +69,10 @@ namespace Practica2.Controllers
             var result = new Respuesta();
             try
             {
-                result=await _producto.DeleteProducto(id);
+                result = await _producto.Delete(id);
             }
             catch (Exception ex)
             {
-
                 log.LogErrorMetodos(this.GetType().Name, "DeleteProducto", ex.Message);
             }
             return result;

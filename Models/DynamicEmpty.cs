@@ -2,7 +2,8 @@
 {
     public  class DynamicEmpty
     {
-        public static bool IsDynamicEmpty(dynamic obj)
+        //recibe cualquier objeto de ser null o una lista vacia devulve true
+        public bool IsDynamicEmpty(dynamic obj)
         {
             if (obj is IEnumerable<dynamic> list)
             {

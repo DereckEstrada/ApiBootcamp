@@ -37,20 +37,26 @@ public partial class VentaspruebaContext : DbContext
 
     public virtual DbSet<Venta> Ventas { get; set; }
 
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Caja>(entity =>
         {
-            entity.HasKey(e => e.CajaId).HasName("PK_CAJA_ID");
+            entity.HasKey(e => e.Id).HasName("PK_CAJA_ID");
 
             entity.ToTable("CAJA");
 
-            entity.Property(e => e.CajaId).HasColumnName("CAJA_ID");
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("ID");
             entity.Property(e => e.CajaDescripcion)
                 .HasMaxLength(45)
                 .IsUnicode(false)
                 .HasColumnName("CAJA_DESCRIPCION");
             entity.Property(e => e.EstadoId).HasColumnName("ESTADO_ID");
+            entity.Property(e => e.FechaHoraReg)
+                .HasColumnType("datetime")
+                .HasColumnName("FECHA_HORA_REG");
 
             entity.HasOne(d => d.Estado).WithMany(p => p.Cajas)
                 .HasForeignKey(d => d.EstadoId)
@@ -60,11 +66,13 @@ public partial class VentaspruebaContext : DbContext
 
         modelBuilder.Entity<Categorium>(entity =>
         {
-            entity.HasKey(e => e.CategId).HasName("PK_CATEG_ID");
+            entity.HasKey(e => e.Id).HasName("PK_CATEG_ID");
 
             entity.ToTable("CATEGORIA");
 
-            entity.Property(e => e.CategId).HasColumnName("CATEG_ID");
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("ID");
             entity.Property(e => e.CategNombre)
                 .HasMaxLength(255)
                 .HasColumnName("CATEG_NOMBRE");
@@ -80,11 +88,13 @@ public partial class VentaspruebaContext : DbContext
 
         modelBuilder.Entity<Ciudad>(entity =>
         {
-            entity.HasKey(e => e.CiudadId).HasName("PK_CIUDAD_ID");
+            entity.HasKey(e => e.Id).HasName("PK_CIUDAD_ID");
 
             entity.ToTable("CIUDAD");
 
-            entity.Property(e => e.CiudadId).HasColumnName("CIUDAD_ID");
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("ID");
             entity.Property(e => e.CiudadNombre)
                 .HasMaxLength(255)
                 .HasColumnName("CIUDAD_NOMBRE");
@@ -100,11 +110,13 @@ public partial class VentaspruebaContext : DbContext
 
         modelBuilder.Entity<Cliente>(entity =>
         {
-            entity.HasKey(e => e.ClienteId).HasName("PK_CLIENTE_ID");
+            entity.HasKey(e => e.Id).HasName("PK_CLIENTE_ID");
 
             entity.ToTable("CLIENTE");
 
-            entity.Property(e => e.ClienteId).HasColumnName("CLIENTE_ID");
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("ID");
             entity.Property(e => e.Cedula).HasColumnName("CEDULA");
             entity.Property(e => e.ClienteNombre)
                 .HasMaxLength(255)
@@ -121,11 +133,11 @@ public partial class VentaspruebaContext : DbContext
 
         modelBuilder.Entity<Estado>(entity =>
         {
-            entity.HasKey(e => e.EstadoId).HasName("PK_ESTADO_ID");
+            entity.HasKey(e => e.Id).HasName("PK_ESTADO_ID");
 
             entity.ToTable("ESTADO");
 
-            entity.Property(e => e.EstadoId).HasColumnName("ESTADO_ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.EstadoDescripcion)
                 .HasMaxLength(10)
                 .IsUnicode(false)
@@ -134,11 +146,13 @@ public partial class VentaspruebaContext : DbContext
 
         modelBuilder.Entity<Marca>(entity =>
         {
-            entity.HasKey(e => e.MarcaId).HasName("PK_MARCA_ID");
+            entity.HasKey(e => e.Id).HasName("PK_MARCA_ID");
 
             entity.ToTable("MARCA");
 
-            entity.Property(e => e.MarcaId).HasColumnName("MARCA_ID");
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("ID");
             entity.Property(e => e.EstadoId).HasColumnName("ESTADO_ID");
             entity.Property(e => e.FechaHoraReg)
                 .HasColumnType("datetime")
@@ -154,11 +168,13 @@ public partial class VentaspruebaContext : DbContext
 
         modelBuilder.Entity<Modelo>(entity =>
         {
-            entity.HasKey(e => e.ModeloId).HasName("PK_MODELO_ID");
+            entity.HasKey(e => e.Id).HasName("PK_MODELO_ID");
 
             entity.ToTable("MODELO");
 
-            entity.Property(e => e.ModeloId).HasColumnName("MODELO_ID");
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("ID");
             entity.Property(e => e.EstadoId).HasColumnName("ESTADO_ID");
             entity.Property(e => e.FechaHoraReg)
                 .HasColumnType("datetime")
@@ -174,11 +190,13 @@ public partial class VentaspruebaContext : DbContext
 
         modelBuilder.Entity<Producto>(entity =>
         {
-            entity.HasKey(e => e.ProductoId).HasName("PK_PRODUCTO_ID");
+            entity.HasKey(e => e.Id).HasName("PK_PRODUCTO_ID");
 
             entity.ToTable("PRODUCTO");
 
-            entity.Property(e => e.ProductoId).HasColumnName("PRODUCTO_ID");
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("ID");
             entity.Property(e => e.CategId).HasColumnName("CATEG_ID");
             entity.Property(e => e.EstadoId).HasColumnName("ESTADO_ID");
             entity.Property(e => e.FechaHoraReg)
@@ -213,11 +231,13 @@ public partial class VentaspruebaContext : DbContext
 
         modelBuilder.Entity<Sucursal>(entity =>
         {
-            entity.HasKey(e => e.SucursalId).HasName("PK_SUCURSAL_ID");
+            entity.HasKey(e => e.Id).HasName("PK_SUCURSAL_ID");
 
             entity.ToTable("SUCURSAL");
 
-            entity.Property(e => e.SucursalId).HasColumnName("SUCURSAL_ID");
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("ID");
             entity.Property(e => e.CiudadId).HasColumnName("CIUDAD_ID");
             entity.Property(e => e.EstadoId).HasColumnName("ESTADO_ID");
             entity.Property(e => e.FechaHoraReg)
@@ -239,12 +259,17 @@ public partial class VentaspruebaContext : DbContext
 
         modelBuilder.Entity<Vendedor>(entity =>
         {
-            entity.HasKey(e => e.VendedorId).HasName("PK_VENDEDOR_ID");
+            entity.HasKey(e => e.Id).HasName("PK_VENDEDOR_ID");
 
             entity.ToTable("VENDEDOR");
 
-            entity.Property(e => e.VendedorId).HasColumnName("VENDEDOR_ID");
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("ID");
             entity.Property(e => e.EstadoId).HasColumnName("ESTADO_ID");
+            entity.Property(e => e.FechaHoraReg)
+                .HasColumnType("datetime")
+                .HasColumnName("FECHA_HORA_REG");
             entity.Property(e => e.VendedorDescripcion)
                 .HasMaxLength(45)
                 .IsUnicode(false)

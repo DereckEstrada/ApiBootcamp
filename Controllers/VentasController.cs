@@ -13,24 +13,22 @@ namespace Practica2.Controllers
     public class VentasController : ControllerBase
     {
         private readonly IVentas _ventas;
-        private ControlError log=new ControlError();
+        private ControlError log = new ControlError();
         public VentasController(IVentas ventas)
         {
             this._ventas = ventas;
         }
-
         [HttpGet]
         [Route("GetVentas")]
-        public async Task<Respuesta> GetVentas(string? opcion, string?data, string?data2)
+        public async Task<Respuesta> GetVentas(string? opcion, string? data, string? data2)
         {
-            var result=new Respuesta();
+            var result = new Respuesta();
             try
             {
                 result = await _ventas.GetVentas(opcion, data, data2);
             }
             catch (Exception ex)
             {
-
                 log.LogErrorMetodos(this.GetType().Name, "GetVentas", ex.Message);
             }
             return result;
@@ -46,14 +44,13 @@ namespace Practica2.Controllers
             }
             catch (Exception ex)
             {
-
                 log.LogErrorMetodos(this.GetType().Name, "GetReporte", ex.Message);
             }
             return result;
         }
         [HttpPost]
         [Route("PostVentas")]
-        public async Task<Respuesta> PostVentas([FromBody]Venta venta)
+        public async Task<Respuesta> PostVentas([FromBody] Venta venta)
         {
             var result = new Respuesta();
             try
@@ -62,7 +59,6 @@ namespace Practica2.Controllers
             }
             catch (Exception ex)
             {
-
                 log.LogErrorMetodos(this.GetType().Name, "PostVentas", ex.Message);
             }
             return result;
@@ -78,7 +74,6 @@ namespace Practica2.Controllers
             }
             catch (Exception ex)
             {
-
                 log.LogErrorMetodos(this.GetType().Name, "PuttVentas", ex.Message);
             }
             return result;

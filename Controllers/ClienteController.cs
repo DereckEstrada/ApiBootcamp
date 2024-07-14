@@ -11,60 +11,52 @@ namespace Practica2.Controllers
     public class ClienteController : ControllerBase
     {
         private readonly ICliente _cliente;
-        private ControlError log=new ControlError();
+        private ControlError log = new ControlError();
         public ClienteController(ICliente cliente)
         {
             this._cliente = cliente;
         }
-
         [HttpGet]
         [Route("GetCliente")]
         public async Task<Respuesta> GetCliente(string? opcion, string? data)
         {
-            
-            var result=new Respuesta();
+            var result = new Respuesta();
             try
             {
-                result=await _cliente.GetCliente(opcion, data);
+                result = await _cliente.GetCliente(opcion, data);
             }
             catch (Exception ex)
             {
-
                 log.LogErrorMetodos(this.GetType().Name, "GetCliente", ex.Message);
             }
             return result;
         }
         [HttpPost]
         [Route("PostCliente")]
-        public async Task<Respuesta> PostCliente([FromBody]Cliente cliente)
+        public async Task<Respuesta> PostCliente([FromBody] Cliente cliente)
         {
-
             var result = new Respuesta();
             try
             {
-                result = await _cliente.PostCliente(cliente);
+                result = await _cliente.Post(cliente);
             }
             catch (Exception ex)
             {
-
                 log.LogErrorMetodos(this.GetType().Name, "PostCliente", ex.Message);
-
             }
             return result;
         }
         [HttpPut]
         [Route("PutCliente")]
-        public async Task<Respuesta> PutCliente([FromBody]Cliente cliente)
+        public async Task<Respuesta> PutCliente([FromBody] Cliente cliente)
         {
-
             var result = new Respuesta();
             try
             {
-                result = await _cliente.PutCliente(cliente);
+                result = await _cliente.Put(cliente);
             }
             catch (Exception ex)
             {
-
                 log.LogErrorMetodos(this.GetType().Name, "PutCliente", ex.Message);
             }
             return result;
@@ -73,15 +65,13 @@ namespace Practica2.Controllers
         [Route("DeleteCliente")]
         public async Task<Respuesta> DeleteCliente(int id)
         {
-
             var result = new Respuesta();
             try
             {
-                result = await _cliente.DeleteCliente(id);
+                result = await _cliente.Delete(id);
             }
             catch (Exception ex)
             {
-
                 log.LogErrorMetodos(this.GetType().Name, "DeleteCliente", ex.Message);
             }
             return result;

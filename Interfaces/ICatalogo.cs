@@ -20,6 +20,13 @@ namespace Practica2.Interfaces
         Task<Respuesta> PostSucursal(Sucursal sucursal);
         Task<Respuesta> PutSucursal(Sucursal sucursal);
         Task<Respuesta> DeleteSucursal(int id);
-
+        Task<Respuesta> GetCiudad();
+        Task<Respuesta> PostCiudad(Ciudad ciudad);
+        Task<Respuesta> PutCiudad(Ciudad ciudad);
+        Task<Respuesta> DeleteCiudad(int id);
+        Task<Respuesta> GetEstado();
+        Task<Respuesta> PostEstado(Estado estado);
+        Task<Respuesta> PutEstado(Estado estado);
+        Task<Respuesta> DeleteEstado(int id);
     }
 }

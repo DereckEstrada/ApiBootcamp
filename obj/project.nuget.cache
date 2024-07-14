@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "syXKWJiVhIc=",
+  "dgSpecHash": "lsIhzyRtA5Y=",
   "success": true,
-  "projectFilePath": "C:\\Users\\derec\\OneDrive\\Documents\\Bootcamp\\.NetCore\\Practica2\\Practica2\\Practica2.csproj",
+  "projectFilePath": "C:\\Users\\derec\\OneDrive\\Documents\\Bootcamp\\.NetCore\\Practica2 - copia\\ApiBootcamp\\Practica2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\derec\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\derec\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
@@ -62,6 +62,7 @@
     "C:\\Users\\derec\\.nuget\\packages\\system.identitymodel.tokens.jwt\\6.35.0\\system.identitymodel.tokens.jwt.6.35.0.nupkg.sha512",
     "C:\\Users\\derec\\.nuget\\packages\\system.io.filesystem.accesscontrol\\5.0.0\\system.io.filesystem.accesscontrol.5.0.0.nupkg.sha512",
     "C:\\Users\\derec\\.nuget\\packages\\system.io.pipelines\\6.0.3\\system.io.pipelines.6.0.3.nupkg.sha512",
+    "C:\\Users\\derec\\.nuget\\packages\\system.linq.dynamic.core\\1.4.3\\system.linq.dynamic.core.1.4.3.nupkg.sha512",
     "C:\\Users\\derec\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
     "C:\\Users\\derec\\.nuget\\packages\\system.memory.data\\1.0.2\\system.memory.data.1.0.2.nupkg.sha512",
     "C:\\Users\\derec\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",

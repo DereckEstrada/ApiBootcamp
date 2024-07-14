@@ -2,6 +2,7 @@
 {
     public class ControlError
     {
+        //Crea un archivo por dia en el que se cargaran los mensajes de Exception 
         public void LogErrorMetodos(string clase, string metodo, string error)
         {
             var ruta=string.Empty;
